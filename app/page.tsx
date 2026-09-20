@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "./components/reveal";
 import { FeaturePanel } from "./components/features";
 import { Shot } from "./components/shot";
@@ -84,10 +85,6 @@ const PRIVACY = [
     "Redacted by default",
     "Bundle identifiers and display names are stored. Executable paths are redacted before they reach a row, and command-line arguments are never collected at all.",
   ],
-  [
-    "Signed and notarized",
-    "Developer ID certificate, hardened runtime, and the app and disk image notarized separately. Gatekeeper opens it without complaint.",
-  ],
 ] as const;
 
 const NUMBERS = [
@@ -132,7 +129,11 @@ export default function Home() {
 
       <header className="sticky top-0 z-40 bg-canvas/[0.86] backdrop-blur-[14px]">
         <div className="mx-auto flex w-full max-w-[1080px] flex-wrap items-center gap-6 px-6 py-3.5">
-          <span className="flex items-center gap-2 text-[17px] font-extrabold tracking-[-0.03em]">
+          <Link
+            href="/"
+            aria-label="Runwell, back to top"
+            className="flex items-center gap-2 text-[17px] font-extrabold tracking-[-0.03em] transition-opacity hover:opacity-70"
+          >
             <Image
               src="/app-icon-dark.png"
               alt=""
@@ -142,7 +143,7 @@ export default function Home() {
               priority
             />
             Runwell
-          </span>
+          </Link>
           <nav className="flex flex-wrap gap-5 text-[13.5px] font-medium text-muted">
             <a href="#honesty" className="transition-colors hover:text-brand">
               Coverage
@@ -593,8 +594,8 @@ export default function Home() {
             data-reveal
             className="mx-auto mt-[18px] max-w-[46ch] text-[15.5px] font-medium leading-[1.55] text-muted"
           >
-            Absolutes, because they are true. Turn off Wi-Fi and Runwell behaves
-            exactly the same.
+            Absolutes, because they are true of the app. Turn off Wi-Fi and
+            Runwell behaves exactly the same.
           </p>
 
           <div className="mt-11 grid gap-[18px] text-left [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))]">
@@ -792,7 +793,11 @@ Scripts/build-app.sh`}</code>
         </section>
 
         <footer className="mt-20 flex flex-wrap items-center gap-[18px] border-t border-hairline pt-[26px] pb-12 text-[12.5px] font-medium text-muted-2">
-          <span className="flex items-center gap-2 font-extrabold tracking-[-0.03em] text-ink">
+          <Link
+            href="/"
+            aria-label="Runwell, back to top"
+            className="flex items-center gap-2 font-extrabold tracking-[-0.03em] text-ink transition-opacity hover:opacity-70"
+          >
             <Image
               src="/app-icon-dark.png"
               alt=""
@@ -801,7 +806,7 @@ Scripts/build-app.sh`}</code>
               className="block size-5"
             />
             Runwell
-          </span>
+          </Link>
           <span>MIT licensed · © 2026</span>
           <a
             href={REPO}
@@ -818,6 +823,11 @@ Scripts/build-app.sh`}</code>
           <a href={ALL_RELEASES} className="transition-colors hover:text-brand">
             Releases
           </a>
+          <p className="w-full text-[11.5px] leading-[1.5] text-faint">
+            The app makes no network calls. This website counts page views with
+            Vercel Analytics, which uses no cookies and does not track you
+            across sites.
+          </p>
         </footer>
       </main>
     </>
