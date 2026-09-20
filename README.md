@@ -36,7 +36,9 @@ app/
     shot.tsx            a screenshot with a fade into the surface below it
   icon.png              favicon      ) generated from public/app-icon-dark.png
   apple-icon.png        touch icon   ) via Next's file conventions
-  opengraph-image.png   link preview, 1200x630
+  opengraph-image.tsx   the social card, drawn at build time (1200x630)
+assets/
+  Figtree-*.ttf         vendored for the social card only
 public/
   app-icon.png          light app icon (unused on the page; kept as a source)
   app-icon-dark.png     used in the header, the CTA and the footer
@@ -90,8 +92,27 @@ outright, and `reveal.tsx` skips the observer and shows everything immediately.
 button points at the pinned release tag; the footer "Releases" link points at
 the release list. Bumping a version is a one-line change.
 
+## Metadata and the social card
+
+`layout.tsx` holds the title, description, Open Graph and Twitter tags, all
+resolved against `metadataBase` (`https://runwell.meerbahadin.dev`). Change that
+one value if the domain moves and every absolute URL follows.
+
+`opengraph-image.tsx` draws the 1200x630 preview card with `next/og` rather than
+shipping a screenshot, so the type stays sharp and the provenance badges are
+legible in a feed. It renders at build time.
+
+Two constraints worth knowing before editing it:
+
+- Satori supports a subset of CSS. Flexbox only — no grid, no floats — and any
+  element with children needs an explicit `display`.
+- The fonts are vendored in `assets/` on purpose. Fetching them from Google at
+  build time would make the build depend on network access.
+
+Check your work by running `bun dev` and opening
+<http://localhost:3000/opengraph-image>.
+
 ## Deploying
 
 A static Next.js app — any host that runs `next build` works, Vercel with no
-configuration. Before going live, set `metadataBase` in `layout.tsx` to the real
-domain, since Open Graph URLs resolve against it.
+configuration.

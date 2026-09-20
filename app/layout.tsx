@@ -12,17 +12,44 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const title = "Runwell — A battery monitor that admits what it can't see";
+
 const description =
-  "macOS hides two thirds of the processes on your Mac. Runwell shows you the rest, tells you it's the rest, and never invents the difference.";
+  "macOS hides two thirds of the processes on your Mac. Runwell shows you the rest, tells you it's the rest, and never invents the difference. Free, open source, and everything stays on your Mac.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://runwell.app"),
-  title: "Runwell — A battery monitor that admits what it can't see",
+  metadataBase: new URL("https://runwell.meerbahadin.dev"),
+  title,
   description,
+  applicationName: "Runwell",
+  keywords: [
+    "macOS battery monitor",
+    "battery life",
+    "energy usage",
+    "Activity Monitor alternative",
+    "Mac app",
+    "open source",
+  ],
+  authors: [{ name: "Meer Bahadin", url: "https://github.com/meerbahadin" }],
+  creator: "Meer Bahadin",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Runwell — A battery monitor that admits what it can't see",
+    title,
     description,
     type: "website",
+    url: "/",
+    siteName: "Runwell",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
 };
 
