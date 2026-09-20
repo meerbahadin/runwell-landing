@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Logo } from "./components/logo";
 import { Reveal } from "./components/reveal";
 import { FeaturePanel } from "./components/features";
 import { Shot } from "./components/shot";
@@ -111,39 +111,20 @@ const INSTALL = [
 export default function Home() {
   return (
     <>
-      <Reveal />
-
       {/* Announcement bar */}
       <div className="flex flex-wrap justify-center gap-3.5 bg-ink px-5 py-[9px] text-xs font-medium tracking-[0.01em] text-canvas">
         <span>Free and open source · MIT</span>
         <span className="opacity-40" aria-hidden="true">
           ·
         </span>
-        <a
-          href={RELEASES}
-          className="transition-colors hover:text-[#7ea3ff]"
-        >
+        <a href={RELEASES} className="transition-colors hover:text-[#7ea3ff]">
           Download 1.0.1 for macOS →
         </a>
       </div>
 
       <header className="sticky top-0 z-40 bg-canvas/[0.86] backdrop-blur-[14px]">
         <div className="mx-auto flex w-full max-w-[1080px] flex-wrap items-center gap-6 px-6 py-3.5">
-          <Link
-            href="/"
-            aria-label="Runwell, back to top"
-            className="flex items-center gap-2 text-[17px] font-extrabold tracking-[-0.03em] transition-opacity hover:opacity-70"
-          >
-            <Image
-              src="/app-icon-dark.png"
-              alt=""
-              width={26}
-              height={26}
-              className="block size-[26px]"
-              priority
-            />
-            Runwell
-          </Link>
+          <Logo size={26} className="text-[17px] font-extrabold" />
           <nav className="flex flex-wrap gap-5 text-[13.5px] font-medium text-muted">
             <a href="#honesty" className="transition-colors hover:text-brand">
               Coverage
@@ -173,22 +154,22 @@ export default function Home() {
       <main className="mx-auto w-full max-w-[1080px] px-6">
         {/* 1 — Hero */}
         <section className="pt-[72px] text-center">
-          <h1
-            data-reveal
+          <Reveal
+            as="h1"
             className="mx-auto max-w-[17ch] text-[clamp(40px,7vw,78px)] font-extrabold leading-[0.99] tracking-[-0.045em] text-balance"
           >
             A battery monitor that admits what it can&apos;t see.
-          </h1>
-          <p
-            data-reveal
+          </Reveal>
+          <Reveal
+            as="p"
             className="mx-auto mt-[22px] max-w-[54ch] text-[17px] font-medium leading-[1.55] text-muted"
           >
             macOS hides two thirds of the processes on your Mac. Runwell shows
             you the rest, tells you it&apos;s the rest, and never invents the
             difference.
-          </p>
-          <div
-            data-reveal
+          </Reveal>
+          <Reveal
+            as="div"
             className="mt-[30px] flex flex-wrap justify-center gap-2.5"
           >
             <a
@@ -206,12 +187,15 @@ export default function Home() {
             >
               View source
             </a>
-          </div>
-          <p data-reveal className="mt-4 text-[12.5px] font-medium text-muted-2">
+          </Reveal>
+          <Reveal
+            as="p"
+            className="mt-4 text-[12.5px] font-medium text-muted-2"
+          >
             Free and open source · MIT · Universal · Signed and notarized
-          </p>
+          </Reveal>
 
-          <div data-reveal className="mt-12 rounded-[22px] bg-[#dcdcdc] p-3.5">
+          <Reveal as="div" className="mt-12 rounded-[22px] bg-[#dcdcdc] p-3.5">
             <div className="flex items-center justify-between px-2 pt-0.5 pb-3 text-[11.5px] font-semibold text-[#6e6e73]">
               <span>Runwell — Applications</span>
               <span>Grouped by app, not by helper process</span>
@@ -223,33 +207,29 @@ export default function Home() {
               priority
               sizes="(max-width: 1080px) 100vw, 1080px"
             />
-          </div>
+          </Reveal>
         </section>
 
         {/* 2 — The problem */}
         <section className="pt-24 text-center">
-          <h2
-            data-reveal
+          <Reveal
+            as="h2"
             className="mx-auto max-w-[20ch] text-[clamp(30px,4.6vw,50px)] font-extrabold leading-[1.02] tracking-[-0.042em] text-balance"
           >
             Activity Monitor gives you a number with{" "}
             <span className="text-brand">no units</span> and no source.
-          </h2>
-          <p
-            data-reveal
+          </Reveal>
+          <Reveal
+            as="p"
             className="mx-auto mt-[18px] max-w-[50ch] text-[15.5px] font-medium leading-[1.55] text-muted"
           >
             There is no way to tell a measurement from a guess. Three things
             every Mac user has already run into.
-          </p>
+          </Reveal>
 
           <div className="mt-11 grid gap-[18px] text-left [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))]">
             {PROBLEMS.map(([title, body], i) => (
-              <div
-                key={title}
-                data-reveal
-                className="rounded-2xl bg-surface p-[22px]"
-              >
+              <Reveal key={title} className="rounded-2xl bg-surface p-[22px]">
                 <div className="flex size-7 items-center justify-center rounded-lg bg-brand-soft text-xs font-extrabold text-brand">
                   {i + 1}
                 </div>
@@ -259,13 +239,13 @@ export default function Home() {
                 <p className="text-sm font-medium leading-[1.55] text-muted">
                   {body}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
 
           {/* Side-by-side: Activity Monitor row vs Runwell row */}
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="mt-4 grid gap-4 text-left [grid-template-columns:repeat(auto-fit,minmax(290px,1fr))]"
           >
             <div className="rounded-[20px] border-2 border-dashed border-[#c9c9c9] bg-[#e9e9e9] p-[22px]">
@@ -338,13 +318,13 @@ export default function Home() {
                 the number came from.
               </p>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* 3 — What it can't see */}
         <section id="honesty" className="pt-24">
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="rounded-[20px] bg-ink px-[34px] py-12 text-canvas"
           >
             <span className="inline-block rounded-full bg-ink-soft px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.06em] text-brand">
@@ -396,12 +376,12 @@ export default function Home() {
                 </span>
               </div>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* 4 — Provenance badges */}
         <section className="pt-6">
-          <div data-reveal className="rounded-[20px] bg-brand-tint p-[34px]">
+          <Reveal as="div" className="rounded-[20px] bg-brand-tint p-[34px]">
             <span className="inline-block rounded-full bg-surface px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.06em] text-brand">
               Provenance
             </span>
@@ -427,33 +407,33 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* 5 — Features */}
         <section id="features" className="pt-24 text-center">
-          <h2
-            data-reveal
+          <Reveal
+            as="h2"
             className="mx-auto max-w-[18ch] text-[clamp(30px,4.6vw,50px)] font-extrabold leading-[1.02] tracking-[-0.042em] text-balance"
           >
             Seven surfaces in <span className="text-brand">1.0.1</span>.
-          </h2>
-          <p
-            data-reveal
+          </Reveal>
+          <Reveal
+            as="p"
             className="mx-auto mt-[18px] max-w-[46ch] text-[15.5px] font-medium leading-[1.55] text-muted"
           >
             Each one built around the same rule: show the number, and show where
             it came from.
-          </p>
+          </Reveal>
 
-          <div data-reveal className="text-left">
+          <Reveal as="div" className="text-left">
             <FeaturePanel />
-          </div>
+          </Reveal>
         </section>
 
         {/* History screenshot */}
         <section className="pt-6">
-          <div data-reveal className="rounded-[20px] bg-surface p-[34px]">
+          <Reveal as="div" className="rounded-[20px] bg-surface p-[34px]">
             <div className="mb-[26px] max-w-[54ch]">
               <span className="inline-block rounded-full bg-brand-soft px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.06em] text-brand">
                 History
@@ -476,13 +456,13 @@ export default function Home() {
                 sizes="(max-width: 1080px) 100vw, 1080px"
               />
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* Insights, with the notification inset */}
         <section className="pt-6">
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="grid items-center gap-8 rounded-[20px] bg-surface p-[34px] [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]"
           >
             <div>
@@ -507,12 +487,12 @@ export default function Home() {
                 sizes="340px"
               />
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* 6 — Sampling */}
         <section className="pt-6">
-          <div data-reveal className="rounded-[20px] bg-surface p-[34px]">
+          <Reveal as="div" className="rounded-[20px] bg-surface p-[34px]">
             <span className="inline-block rounded-full bg-brand-soft px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.06em] text-brand">
               Sampling
             </span>
@@ -546,13 +526,13 @@ export default function Home() {
                 );
               })}
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* Safety */}
         <section className="pt-6">
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="rounded-[20px] bg-ink px-[34px] py-10 text-canvas"
           >
             <h3 className="max-w-[18ch] text-[clamp(28px,4vw,42px)] font-extrabold leading-[1.02] tracking-[-0.04em]">
@@ -578,48 +558,44 @@ export default function Home() {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* 7 — Privacy */}
         <section id="privacy" className="pt-24 text-center">
-          <h2
-            data-reveal
+          <Reveal
+            as="h2"
             className="mx-auto max-w-[18ch] text-[clamp(30px,4.6vw,50px)] font-extrabold leading-[1.02] tracking-[-0.042em] text-balance"
           >
             No account. No analytics.{" "}
             <span className="text-brand">No network calls.</span>
-          </h2>
-          <p
-            data-reveal
+          </Reveal>
+          <Reveal
+            as="p"
             className="mx-auto mt-[18px] max-w-[46ch] text-[15.5px] font-medium leading-[1.55] text-muted"
           >
             Absolutes, because they are true of the app. Turn off Wi-Fi and
             Runwell behaves exactly the same.
-          </p>
+          </Reveal>
 
           <div className="mt-11 grid gap-[18px] text-left [grid-template-columns:repeat(auto-fit,minmax(250px,1fr))]">
             {PRIVACY.map(([title, body]) => (
-              <div
-                key={title}
-                data-reveal
-                className="rounded-2xl bg-surface p-[22px]"
-              >
+              <Reveal key={title} className="rounded-2xl bg-surface p-[22px]">
                 <h3 className="mb-1.5 text-base font-extrabold tracking-[-0.02em]">
                   {title}
                 </h3>
                 <p className="text-sm font-medium leading-[1.55] text-muted">
                   {body}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
 
         {/* 8 — Open source + measured numbers */}
         <section className="pt-24">
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="rounded-[20px] bg-surface p-[34px] text-center"
           >
             <span className="inline-block rounded-full bg-brand-soft px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.06em] text-brand">
@@ -647,13 +623,13 @@ export default function Home() {
               16.7 ms, and the icon lookup alone was more than twice that before
               anything was drawn.
             </p>
-          </div>
+          </Reveal>
         </section>
 
         {/* Repository card */}
         <section className="pt-6">
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="grid items-center gap-8 rounded-[20px] bg-ink p-[34px] text-canvas [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]"
           >
             <div>
@@ -695,13 +671,13 @@ Scripts/build-app.sh`}</code>
                 the download above is the distributable one.
               </p>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* 9 — Download */}
         <section id="download" className="pt-24">
-          <div
-            data-reveal
+          <Reveal
+            as="div"
             className="rounded-3xl bg-brand px-[34px] py-16 text-center text-white"
           >
             <Image
@@ -726,13 +702,13 @@ Scripts/build-app.sh`}</code>
             <p className="mt-4 text-[12.5px] font-semibold text-white/80">
               Free and open source · MIT · Universal · Signed and notarized
             </p>
-          </div>
+          </Reveal>
         </section>
 
         {/* Requirements + install */}
         <section className="pt-6">
           <div className="grid items-stretch gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(290px,1fr))]">
-            <div data-reveal className="rounded-[18px] bg-surface p-7">
+            <Reveal as="div" className="rounded-[18px] bg-surface p-7">
               <span className="text-[11px] font-extrabold uppercase tracking-[0.07em] text-muted-2">
                 Requirements
               </span>
@@ -751,10 +727,10 @@ Scripts/build-app.sh`}</code>
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
 
-            <div
-              data-reveal
+            <Reveal
+              as="div"
               className="flex flex-col rounded-[18px] bg-ink p-7 text-canvas"
             >
               <span className="text-[11px] font-extrabold uppercase tracking-[0.07em] text-faint">
@@ -779,39 +755,25 @@ Scripts/build-app.sh`}</code>
                 terminal command.
               </p>
               <div className="mt-auto flex flex-wrap gap-2 pt-[22px]">
-                {["Universal binary", "No account", "Works offline"].map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full bg-ink-soft px-[13px] py-[7px] text-xs font-bold text-canvas"
-                  >
-                    {t}
-                  </span>
-                ))}
+                {["Universal binary", "No account", "Works offline"].map(
+                  (t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-ink-soft px-[13px] py-[7px] text-xs font-bold text-canvas"
+                    >
+                      {t}
+                    </span>
+                  ),
+                )}
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         <footer className="mt-20 flex flex-wrap items-center gap-[18px] border-t border-hairline pt-[26px] pb-12 text-[12.5px] font-medium text-muted-2">
-          <Link
-            href="/"
-            aria-label="Runwell, back to top"
-            className="flex items-center gap-2 font-extrabold tracking-[-0.03em] text-ink transition-opacity hover:opacity-70"
-          >
-            <Image
-              src="/app-icon-dark.png"
-              alt=""
-              width={20}
-              height={20}
-              className="block size-5"
-            />
-            Runwell
-          </Link>
+          <Logo size={20} className="font-extrabold text-ink" />
           <span>MIT licensed · © 2026</span>
-          <a
-            href={REPO}
-            className="ml-auto transition-colors hover:text-brand"
-          >
+          <a href={REPO} className="ml-auto transition-colors hover:text-brand">
             GitHub
           </a>
           <a
@@ -823,11 +785,6 @@ Scripts/build-app.sh`}</code>
           <a href={ALL_RELEASES} className="transition-colors hover:text-brand">
             Releases
           </a>
-          <p className="w-full text-[11.5px] leading-[1.5] text-faint">
-            The app makes no network calls. This website counts page views with
-            Vercel Analytics, which uses no cookies and does not track you
-            across sites.
-          </p>
         </footer>
       </main>
     </>
